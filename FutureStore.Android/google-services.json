@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "480037943291",
+    "project_id": "futurestore-38d07",
+    "storage_bucket": "futurestore-38d07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480037943291:android:967682763603b4051e7d5e",
+        "android_client_info": {
+          "package_name": "com.MarcosBremont.futurestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480037943291-p80rr2hr386qtud5mn5r5tv1ou1um6h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhWD278h2s5zxek2Qctb-WlOES9DCPvok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480037943291-p80rr2hr386qtud5mn5r5tv1ou1um6h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

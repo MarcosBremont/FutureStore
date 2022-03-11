@@ -1,34 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
              x:Class="FutureStore.MainPage">
+    <ContentPage.Content>
 
-    <StackLayout BackgroundColor="#03754A">
-        <Frame BackgroundColor="WHITE" Padding="24" CornerRadius="0">
-            <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#03754A" FontSize="36"/>
-        </Frame>
-        <StackLayout>
-            <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
-                <Entry x:Name="TxtValorDelProductoEnPesos" Placeholder="Valor del Producto en pesos"></Entry>
-            </Frame>
+        <StackLayout BackgroundColor="#03754A" x:Name="StackLayout" >
 
-            <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
-                <Entry x:Name="TxtCantidadProductosQueLlegaron" Placeholder="¿Cuandos productos llegaron con el paquete?"></Entry>
-            </Frame>
+            <StackLayout x:Name="StackLayourCalculator">
 
-            <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
-                <Entry x:Name="TxtPrecioEnvio" Placeholder="¿cuantó costo el envio?"></Entry>
-            </Frame>
+                <Frame BackgroundColor="WHITE" Padding="24" CornerRadius="0">
+                    <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#03754A" FontSize="36"/>
+                </Frame>
 
-            <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
-                <Entry x:Name="TxtValorTotal" Placeholder="Valor del Producto"></Entry>
-            </Frame>
+                <StackLayout>
+                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                        <Entry x:Name="TxtValorDelProductoEnPesos" Placeholder="Valor del Producto en pesos"></Entry>
+                    </Frame>
 
-            <Button x:Name="BtnCalcular" Text="Calcular" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                        <Entry x:Name="TxtCantidadProductosQueLlegaron" Placeholder="¿Cuandos productos llegaron con el paquete?"></Entry>
+                    </Frame>
+
+                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                        <Entry x:Name="TxtPrecioEnvio" Placeholder="¿cuantó costo el envio?"></Entry>
+                    </Frame>
+
+                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                        <Entry x:Name="TxtValorTotal" Placeholder="Valor del Producto"></Entry>
+                    </Frame>
+
+                    <Button x:Name="BtnCalcular" Text="Calcular" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+
+                    </Button>
+
+                </StackLayout>
                 
-            </Button>
+            </StackLayout>
+
+
+            <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0"  x:Name="StackLayoutProducts">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" ></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+
+                    <StackLayout Margin="10,0,10,40">
+
+                        <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                <ColumnDefinition  Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cod." Grid.Column="0"></Label>
+                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Nombre" Grid.Column="1"></Label>
+                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Precio" Grid.Column="2"></Label>
+                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cantidad" HorizontalOptions="End" Grid.Column="3"></Label>
+                            <ImageButton Source="calculator.png"></ImageButton>
+
+                        </Grid>
+
+                        <ScrollView>
+
+                            <Grid>
+                                <ListView  x:Name="lsv_productos"   SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
+                                    <ListView.ItemTemplate>
+
+                                        <DataTemplate >
+
+                                            <ViewCell Height="20">
+
+
+                                                <Grid  BackgroundColor="White">
+
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                                        <ColumnDefinition></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+
+
+
+
+                                                <Label  Grid.Column="0" FontSize="12" HorizontalOptions="Start" Text="{Binding Cod}"/>
+                                                <Label  Grid.Column="1" FontSize="12" HorizontalOptions="Start" Text="{Binding Nombre}"/>
+                                                <Label  Grid.Column="2" FontSize="12"  HorizontalOptions="Start" Text="{Binding Precio,StringFormat='{0:n2}'}"/>
+                                                <Label  Grid.Column="3" FontSize="12" HorizontalOptions="Start" Text="{Binding Cantidad}"/>
+                                                <ImageButton Grid.Column="4" HorizontalOptions="End"></ImageButton>
+
+                                                </Grid>
+
+
+                                                <!--ITEM-->
+                                            </ViewCell>
+                                        </DataTemplate>
+
+
+                                    </ListView.ItemTemplate>
+                                </ListView>
+
+                            </Grid>
+                        </ScrollView>
+
+                    </StackLayout>
+            </StackLayout>
+
+            <!--Apartado del menu de abajo-->
+            <StackLayout  Spacing="0" VerticalOptions="EndAndExpand" HeightRequest="60"  Margin="0,0,0,0" BackgroundColor="White">
+
+                <!--<StackLayout Orientation="Horizontal">
+                    <Label  TextColor="#333"  Margin="15,0,0,0" Text="Inicio"/>
+                    <Label  TextColor="#333"  Margin="40,0,0,0" Text="Ajustes"/>
+                    <Label  TextColor="#333"  Margin="36,0,0,0" Text="Historial"/>
+                    <Label  TextColor="#333"  Margin="35,0,0,0" Text="Ayuda"/>
+                    <Label  TextColor="#333"  Margin="48,0,0,0" Text="Info"/>
+                </StackLayout>-->
+
+
+                <StackLayout Grid.Row="1" Spacing="0" VerticalOptions="End" HeightRequest="70" Margin="0,0,0,0" BackgroundColor="White">
+
+                    <BoxView Grid.Row="1" BackgroundColor="#818285" HeightRequest="1" HorizontalOptions="FillAndExpand" Opacity="0.3"/>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Spacing="0" Margin="0,1,0,18" >
+
+                        <!--<StackLayout Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridInicio" Spacing="0">
+                        <Image Source="home2.png"  VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" HeightRequest="30" x:Name="btnImgInicio"/>
+                    </StackLayout>
+
+                    <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" HorizontalOptions="Start" Opacity="0.7" />
+
+                    <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridconfig">
+                        <Image Source="settings.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgConfiguracion"/>
+                    </StackLayout>-->
+                        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+
+                            <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
+
+                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridCalculator">
+                                <Image Source="calculator.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgCalculator"/>
+                            </StackLayout>
+
+                            <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
+
+                            <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridProducts">
+                                <Image Source="products.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnProducts"/>
+                            </StackLayout>
+
+                            <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
+
+                        </StackLayout>
+                        <!--<StackLayout Margin="10,0,10,0" Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridInfo" Spacing="0">
+                        <Image Source="exclamacion.png" Margin="12,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" HeightRequest="30" x:Name="btnImgInfo"/>
+                    </StackLayout>-->
+
+                    </StackLayout>
+
+                </StackLayout>
+
+
+            </StackLayout>
 
         </StackLayout>
-    </StackLayout>
+
+    </ContentPage.Content>
 
 </ContentPage>
