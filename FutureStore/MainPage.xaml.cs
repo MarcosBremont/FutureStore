@@ -14,8 +14,11 @@ namespace FutureStore
 {
     public partial class MainPage : ContentPage
     {
+        readonly Metodos metodos = new Metodos();
         public MainPage()
         {
+
+
             InitializeComponent();
             btnImgCalculator.Source = "calculatorRojo.png";
 
@@ -50,8 +53,11 @@ namespace FutureStore
             {
                 base.OnAppearing();
                 this.IsBusy = false;
-                Acr.UserDialogs.UserDialogs.Instance.ShowLoading("Cargando...");
-                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                var apiResult = await metodos.GetListadoProductos(1);
+                lsv_productos.ItemsSource = apiResult;
+                lsv_productos.IsVisible = true;
+
+                //Acr.UserDialogs.UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
