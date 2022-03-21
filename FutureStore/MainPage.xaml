@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              NavigationPage.HasNavigationBar="False"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:customcontrol="clr-namespace:FutureStore.CustomControl"
              ios:Page.UseSafeArea="true"
              x:Class="FutureStore.MainPage">
     <ContentPage.Content>
@@ -42,7 +42,7 @@
             </StackLayout>
 
             <!--Layout Inventario-->
-            <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0" IsVisible="true"  x:Name="StackLayoutProducts">
+            <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0"  x:Name="StackLayoutProducts">
                 <Grid>
 
                     <Grid.RowDefinitions>
@@ -124,45 +124,43 @@
             </StackLayout>
 
             <!--Layout Agregar Productos-->
-            <!--<StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0" IsVisible="true"  x:Name="StackLayoutAddProducts">
-                <Grid>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" ></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-
-                </Grid>
-
-                <StackLayout Margin="10,0,10,40" x:Name="LayoutAddProductos">
-
-                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
-
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35"></ColumnDefinition>
-                            <ColumnDefinition  Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="60"></ColumnDefinition>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
-                       
-                    </Grid>
-
+            <StackLayout  x:Name="StackLayoutAddProducts">
+                <StackLayout VerticalOptions="FillAndExpand"  Margin="10,0,10,40" IsVisible="true" >
                     <ScrollView>
+                        <StackLayout Margin="20">
 
-                        <Grid>
-                            <Label Text="AgregarProductos"></Label>
-                            <Entry></Entry>
-                            <Entry></Entry>
-                        </Grid>
+                            <Label HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="AntiqueWhite"  FontAttributes="Bold" Text="AGREGAR PRODUCTOS"></Label>
+
+                            <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="paint24.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry    Placeholder="Nombre Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtNombre"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
+
+                            <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="dollar.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry  Keyboard="Numeric"  Placeholder="Precio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecio"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="Checkbox.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry  Keyboard="Numeric" Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidad"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
+                            <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="White" TextColor="#333" Margin="0,20,0,0" Text="Agregar Producto"></Button>
+
+
+                        </StackLayout>
                     </ScrollView>
 
                 </StackLayout>
-            </StackLayout>-->
-
+            </StackLayout>
 
             <!--Apartado del menu de abajo-->
             <StackLayout  Spacing="0" VerticalOptions="EndAndExpand" HeightRequest="60"  Margin="0,0,0,0" BackgroundColor="White">

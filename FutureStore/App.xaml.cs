@@ -10,7 +10,7 @@ namespace FutureStore
         {
             InitializeComponent();
 
-            MainPage = new DesignPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

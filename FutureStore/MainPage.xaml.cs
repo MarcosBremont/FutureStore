@@ -20,11 +20,15 @@ namespace FutureStore
             InitializeComponent();
             btnImgCalculator.Source = "calculatorRojo.png";
 
+            lsv_productos.ItemSelected += Lsv_productos_ItemSelected;
+
             gridCalculator.GestureRecognizers.Add(new TapGestureRecognizer
             {
                 Command = new Command(async () =>
                 {
                     LayoutProductos.IsVisible = false;
+                    StackLayoutAddProducts.IsVisible = false;
+
                     btnImgCalculator.Source = "calculatorRojo.png";
                     StackLayourCalculator.IsVisible = true;
                     StackLayoutProducts.IsVisible = false;
@@ -39,6 +43,9 @@ namespace FutureStore
             {
                 Command = new Command(async () =>
                 {
+
+                    StackLayoutAddProducts.IsVisible = false;
+
                     LayoutProductos.IsVisible = true;
                     btnProducts.Source = "productsRojo.png";
                     StackLayourCalculator.IsVisible = false;
@@ -54,16 +61,31 @@ namespace FutureStore
             {
                 Command = new Command(async () =>
                 {
+                    StackLayoutProducts.IsVisible = false;
+
+                    StackLayoutAddProducts.IsVisible = true;
                     LayoutProductos.IsVisible = true;
                     btnAddProduct.Source = "add_Rojo.png";
                     StackLayourCalculator.IsVisible = false;
-                    StackLayoutProducts.IsVisible = true;
                     btnImgCalculator.Source = "calculator.png";
                     btnProducts.Source = "products.png";
-                    lsv_productos.IsVisible = true;
                 }),
                 NumberOfTapsRequired = 1
             });
+        }
+
+        private void Lsv_productos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            if (e.SelectedItem != null)
+            {
+                
+                
+
+            }
         }
 
         protected async override void OnAppearing()
@@ -71,12 +93,13 @@ namespace FutureStore
             try
             {
                 LayoutProductos.IsVisible = false;
+                StackLayoutAddProducts.IsVisible = false;
                 lsv_productos.IsVisible = false;
                 base.OnAppearing();
                 this.IsBusy = false;
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
-                
+
 
                 //Acr.UserDialogs.UserDialogs.Instance.HideLoading();
             }
@@ -87,7 +110,7 @@ namespace FutureStore
 
         }
 
-      
+
 
         private async void BtnCalcular_Clicked(object sender, EventArgs e)
         {
@@ -95,7 +118,7 @@ namespace FutureStore
             {
                 await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK");
             }
-            else if (string.IsNullOrEmpty(TxtPrecioEnvio.Text ))
+            else if (string.IsNullOrEmpty(TxtPrecioEnvio.Text))
             {
                 await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK");
             }
@@ -117,7 +140,21 @@ namespace FutureStore
             }
 
 
-        
+
+        }
+
+        private async void btnAgregarProducto_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
+                var apiResult = await metodos.GetListadoProductos();
+                lsv_productos.ItemsSource = apiResult;
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
-}
 }
