@@ -18,7 +18,7 @@ namespace FutureStore.Models
             // constructor
         }
 
-        public async Task<List<EProductos>> GetListadoProductos(int cod)
+        public async Task<List<EProductos>> GetListadoProductosPorID(int cod)
         {
 
             var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/ConsultarListaDeProductos/{cod}");
@@ -26,6 +26,27 @@ namespace FutureStore.Models
 
             return listado_de_productos;
         } // Fin del método ObtenerMenu
+
+        public async Task<List<EProductos>> GetListadoProductos()
+        {
+
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/ConsultarListaDeProductos/");
+            var listado_de_productos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EProductos>>(result);
+
+            return listado_de_productos;
+        } // Fin del método ObtenerMenu
+
+        public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }
+
+
+
+
+
 
         //public async Task<Result> ActualizarOrden(int tiposervicio, int numero, string progreso_orden, string reportetecnico, string servicio)
         //{

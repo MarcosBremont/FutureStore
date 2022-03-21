@@ -17,8 +17,6 @@ namespace FutureStore
         readonly Metodos metodos = new Metodos();
         public MainPage()
         {
-
-
             InitializeComponent();
             btnImgCalculator.Source = "calculatorRojo.png";
 
@@ -26,10 +24,13 @@ namespace FutureStore
             {
                 Command = new Command(async () =>
                 {
+                    LayoutProductos.IsVisible = false;
                     btnImgCalculator.Source = "calculatorRojo.png";
                     StackLayourCalculator.IsVisible = true;
                     StackLayoutProducts.IsVisible = false;
                     btnProducts.Source = "products.png";
+                    btnAddProduct.Source = "add.png";
+                    lsv_productos.IsVisible = false;
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -38,10 +39,28 @@ namespace FutureStore
             {
                 Command = new Command(async () =>
                 {
+                    LayoutProductos.IsVisible = true;
                     btnProducts.Source = "productsRojo.png";
                     StackLayourCalculator.IsVisible = false;
                     StackLayoutProducts.IsVisible = true;
                     btnImgCalculator.Source = "calculator.png";
+                    btnAddProduct.Source = "add.png";
+                    lsv_productos.IsVisible = true;
+                }),
+                NumberOfTapsRequired = 1
+            });
+
+            gridaddproduct.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    LayoutProductos.IsVisible = true;
+                    btnAddProduct.Source = "add_Rojo.png";
+                    StackLayourCalculator.IsVisible = false;
+                    StackLayoutProducts.IsVisible = true;
+                    btnImgCalculator.Source = "calculator.png";
+                    btnProducts.Source = "products.png";
+                    lsv_productos.IsVisible = true;
                 }),
                 NumberOfTapsRequired = 1
             });
@@ -51,11 +70,13 @@ namespace FutureStore
         {
             try
             {
+                LayoutProductos.IsVisible = false;
+                lsv_productos.IsVisible = false;
                 base.OnAppearing();
                 this.IsBusy = false;
-                var apiResult = await metodos.GetListadoProductos(1);
+                var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
-                lsv_productos.IsVisible = true;
+                
 
                 //Acr.UserDialogs.UserDialogs.Instance.HideLoading();
             }

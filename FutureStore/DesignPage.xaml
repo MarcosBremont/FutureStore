@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:FutureStore.CustomControl"
+             x:Class="FutureStore.DesignPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="AntiqueWhite">
+            <StackLayout VerticalOptions="FillAndExpand"  Margin="10,0,10,40" IsVisible="true"  x:Name="StackLayoutAddProducts">
+                    <ScrollView>
+                    <StackLayout Margin="20">
+
+                        <Label HorizontalOptions="CenterAndExpand" FontSize="20"  FontAttributes="Bold" Text="AGREGAR PRODUCTOS"></Label>
+
+                        <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <StackLayout Orientation="Horizontal"  Margin="4" >
+                                <Image Source="paint24.png" Margin="5"></Image>
+                                <customcontrol:CustomEntry    Placeholder="Nombre Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtNombre"  Margin="0,0,0,0" />
+                            </StackLayout>
+                        </Frame>
+
+
+                        <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <StackLayout Orientation="Horizontal"  Margin="4" >
+                                <Image Source="dollar.png" Margin="5"></Image>
+                                <customcontrol:CustomEntry  Keyboard="Numeric"  Placeholder="Precio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecio"  Margin="0,0,0,0" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <StackLayout Orientation="Horizontal"  Margin="4" >
+                                <Image Source="Checkbox.png" Margin="5"></Image>
+                                <customcontrol:CustomEntry  Keyboard="Numeric" Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidad"  Margin="0,0,0,0" />
+                            </StackLayout>
+                        </Frame>
+
+                        <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#03754A" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
+
+
+                    </StackLayout>
+                    </ScrollView>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

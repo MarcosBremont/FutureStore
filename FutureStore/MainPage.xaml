@@ -9,7 +9,8 @@
 
         <StackLayout BackgroundColor="#03754A" x:Name="StackLayout" >
 
-            <StackLayout x:Name="StackLayourCalculator">
+            <!--Layout Calculadora-->
+            <StackLayout x:Name="StackLayourCalculator" >
 
                 <Frame BackgroundColor="WHITE" Padding="24" CornerRadius="0">
                     <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#03754A" FontSize="36"/>
@@ -40,87 +41,128 @@
                 
             </StackLayout>
 
+            <!--Layout Inventario-->
+            <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0" IsVisible="true"  x:Name="StackLayoutProducts">
+                <Grid>
 
-            <StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0"  x:Name="StackLayoutProducts">
-                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" ></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" ></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+                </Grid>
+
+                <StackLayout Margin="10,0,10,40" x:Name="LayoutProductos">
+
+                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35"></ColumnDefinition>
+                            <ColumnDefinition  Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cod." Grid.Column="0"></Label>
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Nombre" Grid.Column="1"></Label>
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Precio" Grid.Column="2"></Label>
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cantidad" HorizontalOptions="End" Grid.Column="3"></Label>
+                        <!--<ImageButton Source="calculator.png"></ImageButton>-->
 
                     </Grid>
 
-                    <StackLayout Margin="10,0,10,40">
+                    <ScrollView>
 
-                        <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
+                        <Grid>
+                            <ListView  x:Name="lsv_productos"   SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
+                                <ListView.ItemTemplate>
 
+                                    <DataTemplate >
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"></ColumnDefinition>
-                                <ColumnDefinition  Width="80"></ColumnDefinition>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-
-                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cod." Grid.Column="0"></Label>
-                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Nombre" Grid.Column="1"></Label>
-                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Precio" Grid.Column="2"></Label>
-                            <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Cantidad" HorizontalOptions="End" Grid.Column="3"></Label>
-                            <ImageButton Source="calculator.png"></ImageButton>
-
-                        </Grid>
-
-                        <ScrollView>
-
-                            <Grid>
-                                <ListView  x:Name="lsv_productos"   SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
-                                    <ListView.ItemTemplate>
-
-                                        <DataTemplate >
-
-                                            <ViewCell Height="20">
+                                        <ViewCell Height="20">
 
 
-                                                <Grid  BackgroundColor="White">
+                                            <Grid  BackgroundColor="White">
 
 
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="60"></ColumnDefinition>
-                                                        <ColumnDefinition Width="80"></ColumnDefinition>
-                                                        <ColumnDefinition Width="80"></ColumnDefinition>
-                                                        <ColumnDefinition Width="80"></ColumnDefinition>
-                                                        <ColumnDefinition></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                                    <ColumnDefinition Width="95"></ColumnDefinition>
+                                                    <ColumnDefinition Width="80"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
 
 
 
 
 
-                                                <Label  Grid.Column="0" FontSize="12" HorizontalOptions="Start" Text="{Binding Cod}"/>
+                                                <Label Margin="10,0,0,0"  Grid.Column="0" FontSize="12" HorizontalOptions="Start" Text="{Binding Cod}"/>
                                                 <Label  Grid.Column="1" FontSize="12" HorizontalOptions="Start" Text="{Binding Nombre}"/>
                                                 <Label  Grid.Column="2" FontSize="12"  HorizontalOptions="Start" Text="{Binding Precio,StringFormat='{0:n2}'}"/>
                                                 <Label  Grid.Column="3" FontSize="12" HorizontalOptions="Start" Text="{Binding Cantidad}"/>
                                                 <ImageButton Grid.Column="4" HorizontalOptions="End"></ImageButton>
 
-                                                </Grid>
+                                            </Grid>
 
 
-                                                <!--ITEM-->
-                                            </ViewCell>
-                                        </DataTemplate>
+                                            <!--ITEM-->
+                                        </ViewCell>
+                                    </DataTemplate>
 
 
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                            </Grid>
-                        </ScrollView>
+                        </Grid>
+                    </ScrollView>
 
-                    </StackLayout>
+                </StackLayout>
             </StackLayout>
+
+            <!--Layout Agregar Productos-->
+            <!--<StackLayout VerticalOptions="FillAndExpand" Margin="0,0,0,0" IsVisible="true"  x:Name="StackLayoutAddProducts">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" ></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                </Grid>
+
+                <StackLayout Margin="10,0,10,40" x:Name="LayoutAddProductos">
+
+                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35"></ColumnDefinition>
+                            <ColumnDefinition  Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                       
+                    </Grid>
+
+                    <ScrollView>
+
+                        <Grid>
+                            <Label Text="AgregarProductos"></Label>
+                            <Entry></Entry>
+                            <Entry></Entry>
+                        </Grid>
+                    </ScrollView>
+
+                </StackLayout>
+            </StackLayout>-->
+
 
             <!--Apartado del menu de abajo-->
             <StackLayout  Spacing="0" VerticalOptions="EndAndExpand" HeightRequest="60"  Margin="0,0,0,0" BackgroundColor="White">
@@ -165,6 +207,10 @@
 
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
+                            <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridaddproduct">
+                                <Image Source="add.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnAddProduct"/>
+                            </StackLayout>
+                            
                         </StackLayout>
                         <!--<StackLayout Margin="10,0,10,0" Orientation="Horizontal" BackgroundColor="White" HorizontalOptions="FillAndExpand" x:Name="gridInfo" Spacing="0">
                         <Image Source="exclamacion.png" Margin="12,0,0,0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" HeightRequest="30" x:Name="btnImgInfo"/>

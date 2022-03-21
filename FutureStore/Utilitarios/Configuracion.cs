@@ -27,7 +27,8 @@ namespace FutureStore
         //Conexion de la Api
         //public static string Server = "http://10.0.0.100:7011/";//ApiOfitec Servidor
         //public static string Server = "http://190.6.141.29:7003/";//ApiOfitec Servidor global
-        public static string Server = "http://localhost:7108/Api/";//Conexion Vacia
+        //public static string Server = "http://localhost:7108/Api/";//Conexion Vacia
+        public static string Server = "http://10.0.0.136:7108/Api/";//Conexion Vacia
         //private static string Server = "http://api.oficable.com/"; Plesk
         private static string ApiName = "Api/";
         public static string ServerApi { get { return Server + ApiName; } }
