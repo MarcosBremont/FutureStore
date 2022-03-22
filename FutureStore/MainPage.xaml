@@ -33,7 +33,11 @@
                         <Entry x:Name="TxtValorTotal" Placeholder="Valor del Producto"></Entry>
                     </Frame>
 
-                    <Button x:Name="BtnCalcular" BackgroundColor="White" Text="Calcular" TextColor="#03754A" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+                    <Button x:Name="BtnCalcular" BackgroundColor="White" Text="CALCULAR" TextColor="#03754A" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+
+                    </Button>
+
+                     <Button x:Name="BtnLimpiar" Clicked="BtnLimpiar_Clicked" BackgroundColor="White" Text="LIMPIAR" TextColor="#03754A" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20">
 
                     </Button>
 
