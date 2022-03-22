@@ -66,7 +66,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
-    <None Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -132,12 +131,25 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Database">
+      <Version>8.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Auth">
+      <Version>1.7.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\FutureStore\FutureStore.csproj">
-      <Project>{BBF64D1E-2592-49CD-928B-1C742B2AFD8D}</Project>
+      <Project>{C2EE97B1-1C9A-4521-8617-0515A860AC04}</Project>
       <Name>FutureStore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\calculator.png" />
+    <BundleResource Include="Resources\calculatorRojo.png" />
+    <BundleResource Include="Resources\products.png" />
+    <BundleResource Include="Resources\productsRojo.png" />
+    <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
 </Project>

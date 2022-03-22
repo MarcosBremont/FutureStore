@@ -12,28 +12,28 @@
             <!--Layout Calculadora-->
             <StackLayout x:Name="StackLayourCalculator" >
 
-                <Frame BackgroundColor="WHITE" Padding="24" CornerRadius="0">
+                <Frame HasShadow="False" BackgroundColor="WHITE" Padding="24" CornerRadius="0">
                     <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#03754A" FontSize="36"/>
                 </Frame>
 
                 <StackLayout>
-                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
                         <Entry x:Name="TxtValorDelProductoEnPesos" Placeholder="Valor del Producto en pesos"></Entry>
                     </Frame>
 
-                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
                         <Entry x:Name="TxtCantidadProductosQueLlegaron" Placeholder="¿Cuandos productos llegaron con el paquete?"></Entry>
                     </Frame>
 
-                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
                         <Entry x:Name="TxtPrecioEnvio" Placeholder="¿cuantó costo el envio?"></Entry>
                     </Frame>
 
-                    <Frame CornerRadius="20" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
                         <Entry x:Name="TxtValorTotal" Placeholder="Valor del Producto"></Entry>
                     </Frame>
 
-                    <Button x:Name="BtnCalcular" Text="Calcular" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+                    <Button x:Name="BtnCalcular" BackgroundColor="White" Text="Calcular" TextColor="#03754A" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
 
                     </Button>
 
@@ -86,7 +86,6 @@
 
 
                                             <Grid  BackgroundColor="White">
-
 
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="40"></ColumnDefinition>
