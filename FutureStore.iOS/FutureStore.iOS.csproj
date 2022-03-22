@@ -152,4 +152,19 @@
     <BundleResource Include="Resources\productsRojo.png" />
     <BundleResource Include="GoogleService-Info.plist" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paint24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_Rojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\checkbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dollar.png" />
+  </ItemGroup>
 </Project>
