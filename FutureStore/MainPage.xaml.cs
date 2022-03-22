@@ -156,5 +156,10 @@ namespace FutureStore
 
             }
         }
+
+        void BtnLimpiar_Clicked(System.Object sender, System.EventArgs e)
+        {
+            
+        }
     }
 }
