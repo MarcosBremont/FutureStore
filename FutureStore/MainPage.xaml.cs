@@ -1,4 +1,5 @@
-﻿using FutureStore.Models;
+﻿using FutureStore.Entidad;
+using FutureStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
@@ -74,17 +75,23 @@ namespace FutureStore
             });
         }
 
-        private void Lsv_productos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void Lsv_productos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (IsBusy)
-                return;
-            IsBusy = true;
-
             if (e.SelectedItem != null)
             {
-                
-                
+                var element = lsv_productos.SelectedItem as EProductos;
+                if (await DisplayAlert("Atención", "¿Desea eliminar este producto?", "SI", "NO"))
+                {
+                    var result = await new Metodos().DProducto(Convert.ToInt32(element.Cod));
 
+                }
+                else
+                {
+
+                }
+
+                var apiResult = await metodos.GetListadoProductos();
+                lsv_productos.ItemsSource = apiResult;
             }
         }
 
