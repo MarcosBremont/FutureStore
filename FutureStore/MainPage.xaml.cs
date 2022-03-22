@@ -108,7 +108,6 @@ namespace FutureStore
                 lsv_productos.ItemsSource = apiResult;
 
 
-                //Acr.UserDialogs.UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -123,7 +122,7 @@ namespace FutureStore
         {
             if (string.IsNullOrEmpty(TxtValorDelProductoEnPesos.Text))
             {
-                await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK");
+                await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK"); 
             }
             else if (string.IsNullOrEmpty(TxtPrecioEnvio.Text))
             {
@@ -154,9 +153,18 @@ namespace FutureStore
         {
             try
             {
+                Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
                 var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
+                TxtNombre.Text = "";
+                TxtPrecio.Text = "";
+                TxtCantidad.Text = "";
+                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+
+                Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Agregado Con Exito!");
+
+
             }
             catch (Exception ex)
             {
@@ -166,7 +174,10 @@ namespace FutureStore
 
         void BtnLimpiar_Clicked(System.Object sender, System.EventArgs e)
         {
-            
+            TxtCantidadProductosQueLlegaron.Text = "";
+            TxtValorDelProductoEnPesos.Text = "";
+            TxtPrecioEnvio.Text = "";
+            TxtValorTotal.Text = "";
         }
     }
 }

@@ -32,7 +32,7 @@
                             </StackLayout>
                         </Frame>
 
-                        <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#03754A" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
+                        <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#3C3C3C" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
 
 
                     </StackLayout>
