@@ -35,12 +35,8 @@ namespace FutureStore
 
         }
 
-        private async void BtnModificar_Clicked(object sender, EventArgs e)
+        async void BtnModificar_Clicked(object sender, EventArgs e)
         {
-            var result = await new Metodos().UProducto(Convert.ToInt32(txtcantidad.Text), App.Codigo);
-            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Cantidad Modificada con Exito!");
-
-
         }
 
 

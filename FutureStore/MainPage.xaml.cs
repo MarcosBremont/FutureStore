@@ -22,7 +22,7 @@ namespace FutureStore
         public MainPage()
         {
             InitializeComponent();
-            btnImgCalculator.Source = "calculatorRojo.png";
+            btnImgCalculator.Source = "calculatorAmarillo.png";
 
             lsv_productos.ItemSelected += Lsv_productos_ItemSelected;
 
@@ -33,7 +33,7 @@ namespace FutureStore
                     LayoutProductos.IsVisible = false;
                     StackLayoutAddProducts.IsVisible = false;
 
-                    btnImgCalculator.Source = "calculatorRojo.png";
+                    btnImgCalculator.Source = "calculatorAmarillo.png";
                     StackLayourCalculator.IsVisible = true;
                     StackLayoutProducts.IsVisible = false;
                     btnProducts.Source = "products.png";
@@ -51,7 +51,7 @@ namespace FutureStore
                     StackLayoutAddProducts.IsVisible = false;
 
                     LayoutProductos.IsVisible = true;
-                    btnProducts.Source = "productsRojo.png";
+                    btnProducts.Source = "productsAmarillo.png";
                     StackLayourCalculator.IsVisible = false;
                     StackLayoutProducts.IsVisible = true;
                     btnImgCalculator.Source = "calculator.png";
@@ -69,7 +69,7 @@ namespace FutureStore
 
                     StackLayoutAddProducts.IsVisible = true;
                     LayoutProductos.IsVisible = true;
-                    btnAddProduct.Source = "add_Rojo.png";
+                    btnAddProduct.Source = "addAmarillo.png";
                     StackLayourCalculator.IsVisible = false;
                     btnImgCalculator.Source = "calculator.png";
                     btnProducts.Source = "products.png";
@@ -84,23 +84,21 @@ namespace FutureStore
             {
                 var element = lsv_productos.SelectedItem as EProductos;
                 App.Codigo = element.Cod;
-                if (await DisplayAlert("Atención", "¿Usted Desea Modificar o Eliminar el producto?", "ELIMINAR", "MODIFICAR"))
-                {
-                    var result = await new Metodos().DProducto(Convert.ToInt32(element.Cod));
+                Acr.UserDialogs.UserDialogs.Instance.Toast("¡Seleccione que desea hacer, eliminar o modificar!");
+                TxtCantidadProductos.IsVisible = true;
+                TxtCantidadProductos.Text = element.Cantidad;
+                BtnModificar.IsVisible = true;
+                FrameCantidadProductos.IsVisible = true;
 
-                }
-                else
-                {
-                    modalCantidad = new ModalCantidad();
-                    await PopupNavigation.PushAsync(modalCantidad);
-                }
+                BtnEliminar.IsVisible = true;
 
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
             }
         }
 
-      
+
+
 
         protected async override void OnAppearing()
         {
@@ -128,7 +126,7 @@ namespace FutureStore
         {
             if (string.IsNullOrEmpty(TxtValorDelProductoEnPesos.Text))
             {
-                await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK"); 
+                await DisplayAlert("Aviso", "Por favor rellene el campo antes de continuar", "OK");
             }
             else if (string.IsNullOrEmpty(TxtPrecioEnvio.Text))
             {
@@ -199,6 +197,31 @@ namespace FutureStore
             TxtValorTotal.Text = "";
             Acr.UserDialogs.UserDialogs.Instance.Toast("¡Se han limpiado los campos!");
 
+        }
+
+        private async void BtnModificar_Clicked(object sender, EventArgs e)
+        {
+            var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
+            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Cantidad Modificada con Exito!");
+            BtnModificar.IsVisible = false;
+            BtnEliminar.IsVisible = false;
+            TxtCantidadProductos.IsVisible = false;
+            FrameCantidadProductos.IsVisible = false;
+
+            var apiResult = await metodos.GetListadoProductos();
+            lsv_productos.ItemsSource = apiResult;
+        }
+
+        private async void BtnEliminar_Clicked(object sender, EventArgs e)
+        {
+            var result = await new Metodos().DProducto(Convert.ToInt32(App.Codigo));
+            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Eliminado con Exito!");
+            BtnEliminar.IsVisible = false;
+            BtnModificar.IsVisible = false;
+            FrameCantidadProductos.IsVisible = false;
+            TxtCantidadProductos.IsVisible = false;
+            var apiResult = await metodos.GetListadoProductos();
+            lsv_productos.ItemsSource = apiResult;
         }
     }
 }

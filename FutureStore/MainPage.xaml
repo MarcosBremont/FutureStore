@@ -126,6 +126,17 @@
                         </Grid>
                     </ScrollView>
 
+                    <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
+                        <StackLayout Orientation="Horizontal"  Margin="4" >
+                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadProductos"  Margin="0,0,0,0" />
+                        </StackLayout>
+                    </Frame>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Button Text="Modificar" CornerRadius="4" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnModificar" Clicked="BtnModificar_Clicked"></Button>
+                        <Button Text="Eliminar" CornerRadius="4" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnEliminar" Clicked="BtnEliminar_Clicked"></Button>
+                    </StackLayout>
+
                 </StackLayout>
             </StackLayout>
 
