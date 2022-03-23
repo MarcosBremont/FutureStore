@@ -12,34 +12,37 @@
             <!--Layout Calculadora-->
             <StackLayout x:Name="StackLayourCalculator" >
 
-                <Frame HasShadow="False" BackgroundColor="#A2AEBB" Padding="24" CornerRadius="0">
-                    <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#FFFF" FontSize="36"/>
+                <Frame HasShadow="False" BackgroundColor="#254D8D" Padding="5" CornerRadius="0">
+                    <Label Text="Future Store Calculator" HorizontalTextAlignment="Center" TextColor="#FFFF" FontSize="20"/>
                 </Frame>
 
                 <StackLayout>
-                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" BorderColor="#254D8D" Margin="20,5,20,0">
                         <Entry x:Name="TxtValorDelProductoEnPesos" Keyboard="Numeric"  PlaceholderColor="#333" FontSize="14.3" TextColor="#333" Placeholder="Valor del Producto en pesos"></Entry>
                     </Frame>
 
-                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" BorderColor="#254D8D" Margin="20,5,20,0">
                         <Entry x:Name="TxtCantidadProductosQueLlegaron" Keyboard="Numeric"  FontSize="14.3" PlaceholderColor="#333" TextColor="#333" Placeholder="¿Cuandos productos llegaron con el paquete?"></Entry>
                     </Frame>
 
-                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" BorderColor="#254D8D" Margin="20,5,20,0">
                         <Entry x:Name="TxtPrecioEnvio" FontSize="14.3" TextColor="#333" Keyboard="Numeric"  PlaceholderColor="#333" Placeholder="¿cuantó costo el envio?"></Entry>
                     </Frame>
 
-                    <Frame HasShadow="False" CornerRadius="4" Padding="10" Margin="20,5,20,0">
+                    <Frame HasShadow="False" CornerRadius="4" Padding="10" BorderColor="#254D8D" Margin="20,5,20,0">
                         <Entry x:Name="TxtValorTotal" IsReadOnly="True" FontSize="14.3" PlaceholderColor="#333" TextColor="#333" Placeholder="Valor del Producto"></Entry>
                     </Frame>
 
-                    <Button x:Name="BtnCalcular"  BackgroundColor="White" Text="CALCULAR" TextColor="#3C3C3C" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+                    <Button x:Name="BtnCalcular"  BackgroundColor="#254D8D" Text="CALCULAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
 
                     </Button>
 
-                     <Button x:Name="BtnLimpiar" Clicked="BtnLimpiar_Clicked" BackgroundColor="White" Text="LIMPIAR" TextColor="#3C3C3C" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20">
-
+                    <Button x:Name="BtnLimpiar" Clicked="BtnLimpiar_Clicked" BackgroundColor="#254D8D" Text="LIMPIAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20">
                     </Button>
+
+                    <Image Source="playstore.png" Margin="0,10,0,0" WidthRequest="120">
+                        
+                    </Image>
 
                 </StackLayout>
                 
@@ -59,7 +62,7 @@
 
                 <StackLayout Margin="10,0,10,40" x:Name="LayoutProductos">
 
-                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#3E5569" Padding="6">
+                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#254D8D" Padding="6">
 
 
                         <Grid.ColumnDefinitions>
@@ -81,7 +84,7 @@
                     <ScrollView>
 
                         <Grid>
-                            <ListView  x:Name="lsv_productos"   SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
+                            <ListView  x:Name="lsv_productos"  SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
                                 <ListView.ItemTemplate>
 
                                     <DataTemplate >
@@ -132,9 +135,9 @@
                     <ScrollView>
                         <StackLayout Margin="20">
 
-                            <Label HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="AntiqueWhite"  FontAttributes="Bold" Text="AGREGAR PRODUCTOS"></Label>
+                            <Label HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="#254D8D"  FontAttributes="Bold" Text="AGREGAR PRODUCTOS"></Label>
 
-                            <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="paint24.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333"   Placeholder="Nombre Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtNombre"  Margin="0,0,0,0" />
@@ -142,21 +145,21 @@
                             </Frame>
 
 
-                            <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="dollar.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecio"  Margin="0,0,0,0" />
                                 </StackLayout>
                             </Frame>
 
-                            <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                            <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="Checkbox.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333" Keyboard="Numeric" Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidad"  Margin="0,0,0,0" />
                                 </StackLayout>
                             </Frame>
 
-                            <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="White" TextColor="#333" Margin="0,20,0,0" Text="Agregar Producto"></Button>
+                            <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#254D8D" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
 
 
                         </StackLayout>

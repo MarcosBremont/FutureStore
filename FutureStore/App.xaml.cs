@@ -6,6 +6,8 @@ namespace FutureStore
 {
     public partial class App : Application
     {
+        public static int Codigo { get; set; }
+
         public App()
         {
             InitializeComponent();

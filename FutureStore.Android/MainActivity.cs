@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.OS;
 using Acr.UserDialogs;
 
+
 namespace FutureStore.Droid
 {
     [Activity(Label = "FutureStore", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
@@ -14,6 +15,7 @@ namespace FutureStore.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
             UserDialogs.Init(this);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

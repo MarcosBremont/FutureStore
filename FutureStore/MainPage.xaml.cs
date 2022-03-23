@@ -2,6 +2,7 @@
 using FutureStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ namespace FutureStore
     public partial class MainPage : ContentPage
     {
         readonly Metodos metodos = new Metodos();
+        ModalCantidad modalCantidad = new ModalCantidad();
+
         public MainPage()
         {
             InitializeComponent();
@@ -80,20 +83,24 @@ namespace FutureStore
             if (e.SelectedItem != null)
             {
                 var element = lsv_productos.SelectedItem as EProductos;
-                if (await DisplayAlert("Atención", "¿Desea eliminar este producto?", "SI", "NO"))
+                App.Codigo = element.Cod;
+                if (await DisplayAlert("Atención", "¿Usted Desea Modificar o Eliminar el producto?", "ELIMINAR", "MODIFICAR"))
                 {
                     var result = await new Metodos().DProducto(Convert.ToInt32(element.Cod));
 
                 }
                 else
                 {
-
+                    modalCantidad = new ModalCantidad();
+                    await PopupNavigation.PushAsync(modalCantidad);
                 }
 
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
             }
         }
+
+      
 
         protected async override void OnAppearing()
         {
@@ -106,11 +113,10 @@ namespace FutureStore
                 this.IsBusy = false;
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
-
-
             }
             catch (Exception ex)
             {
+                Acr.UserDialogs.UserDialogs.Instance.Toast("¡No se pudo conectar, intente mas tarde!");
 
             }
 
@@ -153,22 +159,35 @@ namespace FutureStore
         {
             try
             {
-                Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
-                var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
-                var apiResult = await metodos.GetListadoProductos();
-                lsv_productos.ItemsSource = apiResult;
-                TxtNombre.Text = "";
-                TxtPrecio.Text = "";
-                TxtCantidad.Text = "";
-                Acr.UserDialogs.UserDialogs.Instance.HideLoading();
+                if (string.IsNullOrEmpty(TxtNombre.Text))
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo del nombre!");
+                }
+                else if (string.IsNullOrEmpty(TxtPrecio.Text))
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo del precio!");
+                }
+                else if (string.IsNullOrEmpty(TxtCantidad.Text))
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo de cantidad!");
+                }
+                else
+                {
+                    Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
+                    var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
+                    var apiResult = await metodos.GetListadoProductos();
+                    lsv_productos.ItemsSource = apiResult;
+                    TxtNombre.Text = "";
+                    TxtPrecio.Text = "";
+                    TxtCantidad.Text = "";
+                    Acr.UserDialogs.UserDialogs.Instance.HideLoading();
 
-                Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Agregado Con Exito!");
-
-
+                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Agregado Con Exito!");
+                }
             }
             catch (Exception ex)
             {
-
+                Acr.UserDialogs.UserDialogs.Instance.Toast("¡No se pudo agregar el producto, intente mas tarde!");
             }
         }
 
@@ -178,6 +197,8 @@ namespace FutureStore
             TxtValorDelProductoEnPesos.Text = "";
             TxtPrecioEnvio.Text = "";
             TxtValorTotal.Text = "";
+            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Se han limpiado los campos!");
+
         }
     }
 }
