@@ -190,15 +190,14 @@ namespace FutureStore
                 else
                 {
                     Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
-                    var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
+                    var response = await metodos.SentenciaProductos(TxtNombre.Text.ToUpper(), Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
                     var apiResult = await metodos.GetListadoProductos();
                     lsv_productos.ItemsSource = apiResult;
                     TxtNombre.Text = "";
                     TxtPrecio.Text = "";
                     TxtCantidad.Text = "";
                     Acr.UserDialogs.UserDialogs.Instance.HideLoading();
-
-                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Agregado Con Exito!");
+                    toastConfig.MostrarNotificacion($"¡Producto Agregado Con Exito!", ToastPosition.Top, 3, "#51C560");
                 }
             }
             catch (Exception ex)
