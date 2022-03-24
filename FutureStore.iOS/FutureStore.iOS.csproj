@@ -167,4 +167,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\dollar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\homeAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\home.png" />
+  </ItemGroup>
 </Project>

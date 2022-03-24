@@ -1,4 +1,5 @@
-﻿using FutureStore.Entidad;
+﻿using Acr.UserDialogs;
+using FutureStore.Entidad;
 using FutureStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -16,13 +17,13 @@ namespace FutureStore
 {
     public partial class MainPage : ContentPage
     {
+        ToastConfigClass toastConfig = new ToastConfigClass();
         readonly Metodos metodos = new Metodos();
-        ModalCantidad modalCantidad = new ModalCantidad();
 
         public MainPage()
         {
             InitializeComponent();
-            btnImgCalculator.Source = "calculatorAmarillo.png";
+            btnImgHome.Source = "homeAmarillo.png";
 
             lsv_productos.ItemSelected += Lsv_productos_ItemSelected;
 
@@ -32,7 +33,8 @@ namespace FutureStore
                 {
                     LayoutProductos.IsVisible = false;
                     StackLayoutAddProducts.IsVisible = false;
-
+                    StackLayoutDashboard.IsVisible = false;
+                    btnImgHome.Source = "home.png";
                     btnImgCalculator.Source = "calculatorAmarillo.png";
                     StackLayourCalculator.IsVisible = true;
                     StackLayoutProducts.IsVisible = false;
@@ -52,6 +54,8 @@ namespace FutureStore
 
                     LayoutProductos.IsVisible = true;
                     btnProducts.Source = "productsAmarillo.png";
+                    StackLayoutDashboard.IsVisible = false;
+                    btnImgHome.Source = "home.png";
                     StackLayourCalculator.IsVisible = false;
                     StackLayoutProducts.IsVisible = true;
                     btnImgCalculator.Source = "calculator.png";
@@ -66,10 +70,29 @@ namespace FutureStore
                 Command = new Command(async () =>
                 {
                     StackLayoutProducts.IsVisible = false;
-
+                    StackLayoutDashboard.IsVisible = false;
+                    btnImgHome.Source = "home.png";
                     StackLayoutAddProducts.IsVisible = true;
                     LayoutProductos.IsVisible = true;
                     btnAddProduct.Source = "addAmarillo.png";
+                    StackLayourCalculator.IsVisible = false;
+                    btnImgCalculator.Source = "calculator.png";
+                    btnProducts.Source = "products.png";
+                }),
+                NumberOfTapsRequired = 1
+            });
+
+            gridHome.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    StackLayoutProducts.IsVisible = false;
+                    StackLayoutDashboard.IsVisible = false;
+                    StackLayoutAddProducts.IsVisible = false;
+                    btnImgHome.Source = "homeAmarillo.png";
+                    StackLayoutDashboard.IsVisible = true;
+                    LayoutProductos.IsVisible = false;
+                    btnAddProduct.Source = "add.png";
                     StackLayourCalculator.IsVisible = false;
                     btnImgCalculator.Source = "calculator.png";
                     btnProducts.Source = "products.png";
@@ -84,21 +107,19 @@ namespace FutureStore
             {
                 var element = lsv_productos.SelectedItem as EProductos;
                 App.Codigo = element.Cod;
-                Acr.UserDialogs.UserDialogs.Instance.Toast("¡Seleccione que desea hacer, eliminar o modificar!");
+                Acr.UserDialogs.UserDialogs.Instance.Toast("");
+                toastConfig.MostrarNotificacion($"¡Seleccione que desea hacer, eliminar o modificar!", ToastPosition.Top, 3, "#51C560");
                 TxtCantidadProductos.IsVisible = true;
                 TxtCantidadProductos.Text = element.Cantidad;
                 BtnModificar.IsVisible = true;
                 FrameCantidadProductos.IsVisible = true;
-
+                BtnCancelar.IsVisible = true;
                 BtnEliminar.IsVisible = true;
 
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
             }
         }
-
-
-
 
         protected async override void OnAppearing()
         {
@@ -114,13 +135,10 @@ namespace FutureStore
             }
             catch (Exception ex)
             {
-                Acr.UserDialogs.UserDialogs.Instance.Toast("¡No se pudo conectar, intente mas tarde!");
-
+                toastConfig.MostrarNotificacion($"¡No se pudo conectar, intente mas tarde!", ToastPosition.Top, 3, "#B02828");
             }
 
         }
-
-
 
         private async void BtnCalcular_Clicked(object sender, EventArgs e)
         {
@@ -159,15 +177,15 @@ namespace FutureStore
             {
                 if (string.IsNullOrEmpty(TxtNombre.Text))
                 {
-                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo del nombre!");
+                    toastConfig.MostrarNotificacion($"¡Por favor llenar el campo del nombre!", ToastPosition.Top, 3, "#B02828");
                 }
                 else if (string.IsNullOrEmpty(TxtPrecio.Text))
                 {
-                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo del precio!");
+                    toastConfig.MostrarNotificacion($"¡Por favor llenar el campo del precio!", ToastPosition.Top, 3, "#B02828");
                 }
                 else if (string.IsNullOrEmpty(TxtCantidad.Text))
                 {
-                    Acr.UserDialogs.UserDialogs.Instance.Toast("¡Por favor llenar el campo de cantidad!");
+                    toastConfig.MostrarNotificacion($"¡Por favor llenar el campo de cantidad!", ToastPosition.Top, 3, "#B02828");
                 }
                 else
                 {
@@ -185,7 +203,7 @@ namespace FutureStore
             }
             catch (Exception ex)
             {
-                Acr.UserDialogs.UserDialogs.Instance.Toast("¡No se pudo agregar el producto, intente mas tarde!");
+                toastConfig.MostrarNotificacion($"¡No se pudo agregar el producto, intente mas tarde!", ToastPosition.Top, 3, "#B02828");
             }
         }
 
@@ -195,14 +213,15 @@ namespace FutureStore
             TxtValorDelProductoEnPesos.Text = "";
             TxtPrecioEnvio.Text = "";
             TxtValorTotal.Text = "";
-            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Se han limpiado los campos!");
+            toastConfig.MostrarNotificacion($"¡Se han limpiado los campos!", ToastPosition.Top, 3, "#51C560");
 
         }
 
         private async void BtnModificar_Clicked(object sender, EventArgs e)
         {
             var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
-            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Cantidad Modificada con Exito!");
+            toastConfig.MostrarNotificacion($"¡Cantidad Modificada con Exito!", ToastPosition.Top, 3, "#51C560");
+
             BtnModificar.IsVisible = false;
             BtnEliminar.IsVisible = false;
             TxtCantidadProductos.IsVisible = false;
@@ -215,13 +234,63 @@ namespace FutureStore
         private async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
             var result = await new Metodos().DProducto(Convert.ToInt32(App.Codigo));
-            Acr.UserDialogs.UserDialogs.Instance.Toast("¡Producto Eliminado con Exito!");
+            toastConfig.MostrarNotificacion($"¡Producto Eliminado con Exito!", ToastPosition.Top, 3, "#51C560");
             BtnEliminar.IsVisible = false;
             BtnModificar.IsVisible = false;
             FrameCantidadProductos.IsVisible = false;
             TxtCantidadProductos.IsVisible = false;
             var apiResult = await metodos.GetListadoProductos();
             lsv_productos.ItemsSource = apiResult;
+        }
+
+        private void btnCalculadora_Clicked(object sender, EventArgs e)
+        {
+            LayoutProductos.IsVisible = false;
+            StackLayoutAddProducts.IsVisible = false;
+            StackLayoutDashboard.IsVisible = false;
+            btnImgHome.Source = "home.png";
+            btnImgCalculator.Source = "calculatorAmarillo.png";
+            StackLayourCalculator.IsVisible = true;
+            StackLayoutProducts.IsVisible = false;
+            btnProducts.Source = "products.png";
+            btnAddProduct.Source = "add.png";
+            lsv_productos.IsVisible = false;
+        }
+
+        private void btnInventario_Clicked(object sender, EventArgs e)
+        {
+            StackLayoutAddProducts.IsVisible = false;
+
+            LayoutProductos.IsVisible = true;
+            btnProducts.Source = "productsAmarillo.png";
+            StackLayoutDashboard.IsVisible = false;
+            btnImgHome.Source = "home.png";
+            StackLayourCalculator.IsVisible = false;
+            StackLayoutProducts.IsVisible = true;
+            btnImgCalculator.Source = "calculator.png";
+            btnAddProduct.Source = "add.png";
+            lsv_productos.IsVisible = true;
+        }
+
+        private void btnAgregarProductos_Clicked(object sender, EventArgs e)
+        {
+            StackLayoutProducts.IsVisible = false;
+            StackLayoutDashboard.IsVisible = false;
+            btnImgHome.Source = "home.png";
+            StackLayoutAddProducts.IsVisible = true;
+            LayoutProductos.IsVisible = true;
+            btnAddProduct.Source = "addAmarillo.png";
+            StackLayourCalculator.IsVisible = false;
+            btnImgCalculator.Source = "calculator.png";
+            btnProducts.Source = "products.png";
+        }
+
+        private void BtnCancelar_Clicked(object sender, EventArgs e)
+        {
+            BtnModificar.IsVisible = false;
+            BtnEliminar.IsVisible = false;
+            BtnCancelar.IsVisible = false;
+            FrameCantidadProductos.IsVisible = false;
         }
     }
 }

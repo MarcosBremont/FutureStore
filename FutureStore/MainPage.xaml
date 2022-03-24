@@ -13,99 +13,68 @@
             <StackLayout x:Name="StackLayoutDashboard">
                 <ScrollView>
 
-                    <StackLayout BackgroundColor="White">
+                    <StackLayout Margin="0,10,0,0" >
 
-                        <Grid RowSpacing="0" BackgroundColor="White">
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="100"/>
-                                <RowDefinition Height="85"/>
-                                <RowDefinition Height="50"/>
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
+                            <Image Source="playstore.png"  WidthRequest="100"  HorizontalOptions="CenterAndExpand" x:Name="SistecsoftImagen"  Grid.Column="0" Grid.Row="0" ></Image>
+                        </StackLayout>
 
-                            </Grid.RowDefinitions>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
 
 
                             <Button 
-                 Grid.Row="0"
-                 Grid.Column="0"
-                 x:Name="btnPendiente"
-                 Text="PENDIENTE"
-                 TextColor="White"
-                 HeightRequest="80"
-                 BackgroundColor="#939393"
-                 Margin="5,20,5,5"
-                 CornerRadius="8"
-                 Clicked="btnPendiente_Clicked">
+                                x:Name="btnCalculadora"
+                                Text="CALCULADORA"
+                                TextColor="White"
+                                HeightRequest="80"
+                                BackgroundColor="#35606B"
+                                Margin="20,20,20,5"
+                                CornerRadius="2"
+                                Clicked="btnCalculadora_Clicked">
                             </Button>
 
                             <Button 
-                 Margin="5,20,5,5"
-                 Grid.Row="0"
-                 Grid.Column="1"
-                 x:Name="btnEnCamino"
-                 Text="EN CAMINO"
-                 TextColor="White"
-                 HeightRequest="80"
-                 BackgroundColor="#3F79AC"
-                 CornerRadius="8"
-                 Clicked="btnEnCamino_Clicked">
+                                Margin="20,5,20,5"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                x:Name="btnInventario"
+                                Text="INVENTARIO"
+                                TextColor="White"
+                                HeightRequest="80"
+                                BackgroundColor="#1A4A57"
+                                CornerRadius="2"
+                                Clicked="btnInventario_Clicked">
                             </Button>
 
                             <Button 
-                 Margin="5,5,5,5"
-                 Grid.Row="1"
-                 Grid.Column="0"
-                 x:Name="btnEnProceso"
-                 Text="EN  PROCESO"
-                 TextColor="White"
-                 HeightRequest="80"
-                 BackgroundColor="#D09625"
-                 CornerRadius="8"
-                 Clicked="btnEnProceso_Clicked">
-                            </Button>
-
-                            <Button 
-                 Margin="5,5,5,5"
-                 Grid.Row="1"
-                 Grid.Column="1"
-                 x:Name="btnTrabajada"
-                 Text="TRABAJADA"
-                 TextColor="White"
-                 HeightRequest="80"
-                 BackgroundColor="#7cc151"
-                 CornerRadius="8"
-                 Clicked="btnTrabajada_Clicked">
+                                Margin="20,5,20,5"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                x:Name="btnAgregarProductos"
+                                Text="AGREGAR PRODUCTOS"
+                                TextColor="White"
+                                HeightRequest="80"
+                                BackgroundColor="#35606B"
+                                CornerRadius="2"
+                                Clicked="btnAgregarProductos_Clicked"
+                                
+                                >
                             </Button>
 
 
-                        </Grid>
 
                         
-
-                        
-
-
                         <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,80,0,0">
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="v" TextColor="#333" FontSize="14" TextTransform="Uppercase" ></Span>
-                                        <Span Text="2.0.8" x:Name="lblVersion" TextColor="#333" FontSize="14" ></Span>
+                                        <Span Text="1.0.0" x:Name="lblVersion" TextColor="#333" FontSize="14" ></Span>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                         </StackLayout>
 
-
-
-                        <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
-                            <Image Source="Sistecsoft.png"  WidthRequest="100"  HorizontalOptions="CenterAndExpand" x:Name="SistecsoftImagen"  Grid.Column="0" Grid.Row="0" ></Image>
-                        </StackLayout>
 
 
 
@@ -138,16 +107,12 @@
                         <Entry x:Name="TxtValorTotal" IsReadOnly="True" FontSize="14.3" PlaceholderColor="#333" TextColor="#333" Placeholder="Valor del Producto"></Entry>
                     </Frame>
 
-                    <Button x:Name="BtnCalcular"  BackgroundColor="#254D8D" Text="CALCULAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20"  Clicked="BtnCalcular_Clicked">
+                    <Button x:Name="BtnCalcular"  BackgroundColor="#254D8D" Text="CALCULAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="2"  Clicked="BtnCalcular_Clicked">
 
                     </Button>
 
-                    <Button x:Name="BtnLimpiar" Clicked="BtnLimpiar_Clicked" BackgroundColor="#254D8D" Text="LIMPIAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="20">
+                    <Button x:Name="BtnLimpiar" Clicked="BtnLimpiar_Clicked" BackgroundColor="#254D8D" Text="LIMPIAR" TextColor="White" FontAttributes="Bold" Margin="20,10,20,0" CornerRadius="2">
                     </Button>
-
-                    <Image Source="playstore.png" Margin="0,10,0,0" WidthRequest="120">
-
-                    </Image>
 
                 </StackLayout>
 
@@ -231,15 +196,16 @@
                         </Grid>
                     </ScrollView>
 
-                    <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
+                    <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
                         <StackLayout Orientation="Horizontal"  Margin="4" >
                             <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadProductos"  Margin="0,0,0,0" />
                         </StackLayout>
                     </Frame>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Button Text="Modificar" CornerRadius="4" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnModificar" Clicked="BtnModificar_Clicked"></Button>
-                        <Button Text="Eliminar" CornerRadius="4" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnEliminar" Clicked="BtnEliminar_Clicked"></Button>
+                        <Button Text="Modificar" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnModificar" Clicked="BtnModificar_Clicked"></Button>
+                        <Button Text="Eliminar" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnEliminar" Clicked="BtnEliminar_Clicked"></Button>
+                        <Button Text="Cancelar" CornerRadius="2" BackgroundColor="Gray" TextColor="White" IsVisible="false" x:Name="BtnCancelar" Clicked="BtnCancelar_Clicked"></Button>
                     </StackLayout>
 
                 </StackLayout>
@@ -253,7 +219,7 @@
 
                             <Label HorizontalOptions="CenterAndExpand" FontSize="20" TextColor="#254D8D"  FontAttributes="Bold" Text="AGREGAR PRODUCTOS"></Label>
 
-                            <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
+                            <Frame x:Name="FrNombre" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="paint24.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333"   Placeholder="Nombre Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtNombre"  Margin="0,0,0,0" />
@@ -261,21 +227,21 @@
                             </Frame>
 
 
-                            <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
+                            <Frame x:Name="FrPrecio" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="dollar.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecio"  Margin="0,0,0,0" />
                                 </StackLayout>
                             </Frame>
 
-                            <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="8">
+                            <Frame x:Name="FrCantidad" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
                                 <StackLayout Orientation="Horizontal"  Margin="4" >
                                     <Image Source="Checkbox.png" Margin="5"></Image>
                                     <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333" Keyboard="Numeric" Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidad"  Margin="0,0,0,0" />
                                 </StackLayout>
                             </Frame>
 
-                            <Button CornerRadius="4" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#254D8D" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
+                            <Button CornerRadius="2" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#254D8D" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
 
 
                         </StackLayout>
@@ -313,8 +279,14 @@
                     </StackLayout>-->
                         <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
 
+                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridHome">
+                                <Image Source="home.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHome"/>
+                            </StackLayout>
+
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
+                            
+                            
                             <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridCalculator">
                                 <Image Source="calculator.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgCalculator"/>
                             </StackLayout>
