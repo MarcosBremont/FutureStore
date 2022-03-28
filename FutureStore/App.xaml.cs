@@ -7,6 +7,10 @@ namespace FutureStore
     public partial class App : Application
     {
         public static int Codigo { get; set; }
+        public static int CantidadParaVender { get; set; }
+        public static Double GananciaParaVender { get; set; }
+        public static String NombreParaVender { get; set; }
+        public static String PrecioParaVender { get; set; }
 
         public App()
         {

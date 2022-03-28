@@ -8,7 +8,7 @@ namespace FutureStore.Models
     public class Conexion
     {
 
-        private readonly string conexion = "server=localhost;user=root;password=1234-;database=futurestore;port=3306;max pool size=1000;SslMode=none;Convert Zero Datetime=True;";
+        private readonly string conexion = "server=mysql.tecnolora.com;user=apibremont;password=apibremont;database=api_bremont;port=7100;max pool size=1000;SslMode=none;Convert Zero Datetime=True;";
 
 
         private readonly MySqlConnection con;

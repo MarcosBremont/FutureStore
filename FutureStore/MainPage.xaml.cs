@@ -23,6 +23,7 @@ namespace FutureStore
         public MainPage()
         {
             InitializeComponent();
+            TxtPrecioEnvio.Text = "210";
             btnImgHome.Source = "homeAmarillo.png";
 
             lsv_productos.ItemSelected += Lsv_productos_ItemSelected;
@@ -107,14 +108,18 @@ namespace FutureStore
             {
                 var element = lsv_productos.SelectedItem as EProductos;
                 App.Codigo = element.Cod;
+                App.NombreParaVender = element.Nombre;
+                App.PrecioParaVender = element.Precio.ToString(); ;
+                App.GananciaParaVender =  element.Precio * 0.30;
                 Acr.UserDialogs.UserDialogs.Instance.Toast("");
                 toastConfig.MostrarNotificacion($"¡Seleccione que desea hacer, eliminar o modificar!", ToastPosition.Top, 3, "#51C560");
                 TxtCantidadProductos.IsVisible = true;
-                TxtCantidadProductos.Text = element.Cantidad;
+                TxtCantidadProductos.Text = element.Cantidad.ToString();
                 BtnModificar.IsVisible = true;
                 FrameCantidadProductos.IsVisible = true;
                 BtnCancelar.IsVisible = true;
                 BtnEliminar.IsVisible = true;
+                BtnVender.IsVisible = true;
 
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
@@ -290,6 +295,16 @@ namespace FutureStore
             BtnEliminar.IsVisible = false;
             BtnCancelar.IsVisible = false;
             FrameCantidadProductos.IsVisible = false;
+        }
+
+        private async void BtnVender_Clicked(object sender, EventArgs e)
+        {
+            App.CantidadParaVender = Convert.ToInt32(TxtCantidadProductos.Text);
+            double PrecioGananciaParaVender = TxtPrecioEnvio.Text 
+            var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
+            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(App.GananciaParaVender));
+            toastConfig.MostrarNotificacion($"¡Producto Vendido con Exito!", ToastPosition.Top, 3, "#51C560");
+
         }
     }
 }

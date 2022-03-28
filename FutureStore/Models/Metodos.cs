@@ -58,6 +58,12 @@ namespace FutureStore.Models
             return response;
         }
 
+        public async Task<Result> IProductoVendido(string Nombre, int Precio, int Cantidad, int Ganancia)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/IProductoVendido/{Nombre}/{Precio}/{Cantidad}/{Ganancia}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }
 
 
 
