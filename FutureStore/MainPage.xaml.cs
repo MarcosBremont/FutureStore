@@ -300,9 +300,13 @@ namespace FutureStore
         private async void BtnVender_Clicked(object sender, EventArgs e)
         {
             App.CantidadParaVender = Convert.ToInt32(TxtCantidadProductos.Text);
-            double PrecioGananciaParaVender = TxtPrecioEnvio.Text 
+            double Precioparacalcular = Convert.ToDouble(TxtPrecioParaCalcular.Text);
+            double Envioparacalcular = Convert.ToDouble(TxtEnvioParaCalcular.Text);
+            Double PrecioDelPaqueteYLibra = Precioparacalcular + Envioparacalcular;
+            Double PrecioTotalMasLasGanancias = PrecioDelPaqueteYLibra * 0.30;
+
             var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
-            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(App.GananciaParaVender));
+            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias));
             toastConfig.MostrarNotificacion($"¡Producto Vendido con Exito!", ToastPosition.Top, 3, "#51C560");
 
         }
