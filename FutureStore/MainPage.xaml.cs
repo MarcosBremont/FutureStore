@@ -299,10 +299,11 @@ namespace FutureStore
 
         private async void BtnVender_Clicked(object sender, EventArgs e)
         {
+            int CantidadProductosQueLlegaronCalcular = Convert.ToInt32(TxtCantidadPaquetes.Text);
+            int CuantoSeLeCobraranDeLaLibra = Convert.ToInt32(TxtPrecioParaCalcular.Text) / CantidadProductosQueLlegaronCalcular;
             App.CantidadParaVender = Convert.ToInt32(TxtCantidadProductos.Text);
             double Precioparacalcular = Convert.ToDouble(TxtPrecioParaCalcular.Text);
-            double Envioparacalcular = Convert.ToDouble(TxtEnvioParaCalcular.Text);
-            Double PrecioDelPaqueteYLibra = Precioparacalcular + Envioparacalcular;
+            Double PrecioDelPaqueteYLibra = Precioparacalcular + CuantoSeLeCobraranDeLaLibra;
             Double PrecioTotalMasLasGanancias = PrecioDelPaqueteYLibra * 0.30;
 
             var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);

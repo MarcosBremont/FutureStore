@@ -197,29 +197,31 @@
                     </ScrollView>
 
                     <Label HorizontalOptions="Center" TextColor="#333" FontAttributes="Bold" Text="¿Cuantos Productos Venderas?"></Label>
-                    <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="4" >
+                    
+
+                    <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                        <StackLayout Orientation="Horizontal"  Margin="1" >
                             <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadProductos"  Margin="0,0,0,0" />
                         </StackLayout>
                     </Frame>
 
 
-                    <Frame x:Name="FrameCantidadPaquetesCalcularGanancias" IsVisible="True" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="4" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadPaquetes"  Margin="0,0,0,0" />
+                    <Frame x:Name="FrameCantidadPaquetesCalcularGanancias" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                        <StackLayout Orientation="Horizontal"  Margin="1" >
+                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad Paquetes" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadPaquetes"  Margin="0,0,0,0" />
                         </StackLayout>
                     </Frame>
 
 
-                    <Frame x:Name="FrameEnvioCalcularGanancias" IsVisible="True" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="4" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtEnvioParaCalcular"  Margin="0,0,0,0" />
+                    <Frame x:Name="FrameEnvioCalcularGanancias" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                        <StackLayout Orientation="Horizontal"  Margin="1" >
+                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio Envio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtEnvioParaCalcular"  Margin="0,0,0,0" />
                         </StackLayout>
                     </Frame>
 
-                    <Frame x:Name="FramePrecioDelProductoEnPesosCalcular" IsVisible="True" Margin="60,8,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="4" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecioParaCalcular"  Margin="0,0,0,0" />
+                    <Frame x:Name="FramePrecioDelProductoEnPesosCalcular" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                        <StackLayout Orientation="Horizontal"  Margin="1" >
+                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio del Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecioParaCalcular"  Margin="0,0,0,0" />
                         </StackLayout>
                     </Frame>
 
