@@ -113,6 +113,7 @@ namespace FutureStore
                 App.GananciaParaVender =  element.Precio;
                 App.CantidadProductosEnLaCompra =  element.CantidadProductosEnLaCompra;
                 App.PrecioDelEnvioEnLaCompra =  element.PrecioDelEnvioEnLaCompra;
+                App.PrecioSinGanancias = element.PrecioSinGanancias;
                 Acr.UserDialogs.UserDialogs.Instance.Toast("");
                 toastConfig.MostrarNotificacion($"¡Seleccione que desea hacer, eliminar o modificar!", ToastPosition.Top, 3, "#51C560");
                 TxtCantidadProductos.IsVisible = true;
@@ -309,9 +310,16 @@ namespace FutureStore
 
         private async void BtnVender_Clicked(object sender, EventArgs e)
         {
-            double PrecioTotalMasLasGanancias = App.GananciaParaVender / App.CantidadProductosEnLaCompra * 0.30;
+            int CantidadProductosQueLlegaron = Convert.ToInt32(App.CantidadProductosEnLaCompra);
+            int PrecioEnvio = Convert.ToInt32(App.PrecioDelEnvioEnLaCompra);
+            int CuantoSeLeCobraranDeLaLibra = PrecioEnvio / CantidadProductosQueLlegaron;
+            int PrecioDelPaqueteEnPesos = Convert.ToInt32(App.PrecioSinGanancias);
+
+            Double PrecioDelPaqueteYLibra = PrecioDelPaqueteEnPesos + CuantoSeLeCobraranDeLaLibra;
+            Double PrecioTotalMasLasGanancias = PrecioDelPaqueteYLibra * 0.30;
+
             var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
-            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias), Convert.ToInt32(App.CantidadProductosEnLaCompra), Convert.ToInt32(FrPrecioDelEnvioEnLaCompra));
+            var result2 = await new Metodos().IProductoVendido( App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias), Convert.ToInt32(App.CantidadProductosEnLaCompra), Convert.ToInt32(App.PrecioDelEnvioEnLaCompra), Convert.ToInt32(App.PrecioSinGanancias));
             toastConfig.MostrarNotificacion($"¡Producto Vendido con Exito!", ToastPosition.Top, 3, "#51C560");
 
         }

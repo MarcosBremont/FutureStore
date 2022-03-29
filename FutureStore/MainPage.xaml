@@ -205,27 +205,6 @@
                         </StackLayout>
                     </Frame>
 
-
-                    <Frame x:Name="FrameCantidadPaquetesCalcularGanancias" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="1" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Cantidad Paquetes" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadPaquetes"  Margin="0,0,0,0" />
-                        </StackLayout>
-                    </Frame>
-
-
-                    <Frame x:Name="FrameEnvioCalcularGanancias" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="1" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio Envio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtEnvioParaCalcular"  Margin="0,0,0,0" />
-                        </StackLayout>
-                    </Frame>
-
-                    <Frame x:Name="FramePrecioDelProductoEnPesosCalcular" IsVisible="True" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
-                        <StackLayout Orientation="Horizontal"  Margin="1" >
-                            <customcontrol:CustomEntry HorizontalTextAlignment="Center" PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Precio del Producto" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecioParaCalcular"  Margin="0,0,0,0" />
-                        </StackLayout>
-                    </Frame>
-
-
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                         
                         <Button Text="Modificar" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnModificar" Clicked="BtnModificar_Clicked"></Button>
