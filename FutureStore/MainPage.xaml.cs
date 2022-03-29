@@ -258,6 +258,9 @@ namespace FutureStore
             lblcod.IsVisible = false;
             lblprecio.IsVisible = false;
             lblguion.IsVisible = false;
+            BtnCancelar.IsVisible = false;
+            BtnVender.IsVisible = false;
+            LblProductosVenderasOModificaras.IsVisible = false;
 
 
             var apiResult = await metodos.GetListadoProductos();
