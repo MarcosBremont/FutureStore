@@ -132,7 +132,7 @@
 
                 <StackLayout Margin="10,0,10,40" x:Name="LayoutProductos">
 
-                    <Grid Grid.Row="1" Margin="0" HeightRequest="25" BackgroundColor="#254D8D" Padding="6">
+                    <Grid Grid.Row="1" Margin="0" HeightRequest="40" BackgroundColor="#254D8D" Padding="6">
 
 
                         <Grid.ColumnDefinitions>
@@ -196,8 +196,13 @@
                         </Grid>
                     </ScrollView>
 
-                    <Label HorizontalOptions="Center" TextColor="#333" FontAttributes="Bold" Text="¿Cuantos Productos Venderas?"></Label>
-                    
+                        <Label HorizontalOptions="Center" x:Name="LblProductosVenderasOModificaras" TextColor="#333" FontAttributes="Bold" Text="¿Cuantos Productos Venderas o modificaras?"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label HorizontalOptions="Center" x:Name="lblcod" IsVisible="false" TextTransform="Uppercase" TextColor="#333" FontAttributes="Bold"></Label>
+                        <Label HorizontalOptions="Center" x:Name="lblguion" Text=" - " IsVisible="false" TextTransform="Uppercase" TextColor="#333" FontAttributes="Bold"></Label>
+                        <Label HorizontalOptions="Center" x:Name="lblNombreproducto" IsVisible="false" TextTransform="Uppercase" TextColor="#333" FontAttributes="Bold"></Label>
+                        <Label HorizontalOptions="Center" x:Name="lblprecio" IsVisible="false" TextTransform="Uppercase" TextColor="#333" FontAttributes="Bold"></Label>
+                    </StackLayout>
 
                     <Frame x:Name="FrameCantidadProductos" IsVisible="false" Margin="60,1,60,8" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
                         <StackLayout Orientation="Horizontal"  Margin="1" >
@@ -206,7 +211,7 @@
                     </Frame>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        
+
                         <Button Text="Modificar" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnModificar" Clicked="BtnModificar_Clicked"></Button>
                         <Button Text="Vender" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnVender" Clicked="BtnVender_Clicked"></Button>
                         <Button Text="Eliminar" CornerRadius="2" BackgroundColor="#254D8D" TextColor="White" IsVisible="false" x:Name="BtnEliminar" Clicked="BtnEliminar_Clicked"></Button>

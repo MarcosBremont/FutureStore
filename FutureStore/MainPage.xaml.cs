@@ -25,7 +25,7 @@ namespace FutureStore
             InitializeComponent();
             TxtPrecioEnvio.Text = "210";
             btnImgHome.Source = "homeAmarillo.png";
-
+            LblProductosVenderasOModificaras.IsVisible = false;
             lsv_productos.ItemSelected += Lsv_productos_ItemSelected;
 
             gridCalculator.GestureRecognizers.Add(new TapGestureRecognizer
@@ -106,6 +106,8 @@ namespace FutureStore
         {
             if (e.SelectedItem != null)
             {
+                LblProductosVenderasOModificaras.IsVisible = true;
+
                 var element = lsv_productos.SelectedItem as EProductos;
                 App.Codigo = element.Cod;
                 App.NombreParaVender = element.Nombre;
@@ -124,6 +126,14 @@ namespace FutureStore
                 BtnEliminar.IsVisible = true;
                 BtnVender.IsVisible = true;
 
+                lblNombreproducto.Text = element.Nombre;
+                lblcod.Text = element.Cod.ToString();
+                lblprecio.Text = " RD$ " + element.Precio.ToString();
+
+                lblNombreproducto.IsVisible = true;
+                lblcod.IsVisible = true;
+                lblprecio.IsVisible = true;
+                lblguion.IsVisible = true;
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
             }
@@ -206,12 +216,15 @@ namespace FutureStore
                 else
                 {
                     Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
-                    var response = await metodos.SentenciaProductos(TxtNombre.Text.ToUpper(), Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text), Convert.ToInt32(TxtCantidadProductosEnLaCompra.Text), Convert.ToInt32(TxtPrecioDelEnvioEnLaCompra.Text));
+                    var response = await metodos.SentenciaProductos(TxtNombre.Text.ToUpper(), Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text), Convert.ToInt32(TxtCantidadProductosEnLaCompra.Text), Convert.ToInt32(TxtPrecioDelEnvioEnLaCompra.Text), Convert.ToInt32(TxtPrecioSinGanancias.Text));
                     var apiResult = await metodos.GetListadoProductos();
                     lsv_productos.ItemsSource = apiResult;
                     TxtNombre.Text = "";
                     TxtPrecio.Text = "";
                     TxtCantidad.Text = "";
+                    TxtCantidadProductosEnLaCompra.Text = "";
+                    TxtPrecioDelEnvioEnLaCompra.Text = "";
+                    TxtPrecioSinGanancias.Text = "";
                     Acr.UserDialogs.UserDialogs.Instance.HideLoading();
                     toastConfig.MostrarNotificacion($"¡Producto Agregado Con Exito!", ToastPosition.Top, 3, "#51C560");
                 }
@@ -241,6 +254,11 @@ namespace FutureStore
             BtnEliminar.IsVisible = false;
             TxtCantidadProductos.IsVisible = false;
             FrameCantidadProductos.IsVisible = false;
+            lblNombreproducto.IsVisible = false;
+            lblcod.IsVisible = false;
+            lblprecio.IsVisible = false;
+            lblguion.IsVisible = false;
+
 
             var apiResult = await metodos.GetListadoProductos();
             lsv_productos.ItemsSource = apiResult;
@@ -256,6 +274,14 @@ namespace FutureStore
             TxtCantidadProductos.IsVisible = false;
             var apiResult = await metodos.GetListadoProductos();
             lsv_productos.ItemsSource = apiResult;
+            BtnVender.IsVisible = false;
+            BtnCancelar.IsVisible = false;
+            LblProductosVenderasOModificaras.IsVisible = false;
+            lblNombreproducto.IsVisible = false;
+            lblcod.IsVisible = false;
+            lblprecio.IsVisible = false;
+            lblguion.IsVisible = false;
+
         }
 
         private void btnCalculadora_Clicked(object sender, EventArgs e)
@@ -306,6 +332,12 @@ namespace FutureStore
             BtnEliminar.IsVisible = false;
             BtnCancelar.IsVisible = false;
             FrameCantidadProductos.IsVisible = false;
+            BtnVender.IsVisible = false;
+            LblProductosVenderasOModificaras.IsVisible = false;
+            lblNombreproducto.IsVisible = false;
+            lblcod.IsVisible = false;
+            lblprecio.IsVisible = false;
+            lblguion.IsVisible = false;
         }
 
         private async void BtnVender_Clicked(object sender, EventArgs e)
@@ -318,9 +350,11 @@ namespace FutureStore
             Double PrecioDelPaqueteYLibra = PrecioDelPaqueteEnPesos + CuantoSeLeCobraranDeLaLibra;
             Double PrecioTotalMasLasGanancias = PrecioDelPaqueteYLibra * 0.30;
 
-            var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
+            var result = await new Metodos().UProductoVender(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
             var result2 = await new Metodos().IProductoVendido( App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias), Convert.ToInt32(App.CantidadProductosEnLaCompra), Convert.ToInt32(App.PrecioDelEnvioEnLaCompra), Convert.ToInt32(App.PrecioSinGanancias));
             toastConfig.MostrarNotificacion($"¡Producto Vendido con Exito!", ToastPosition.Top, 3, "#51C560");
+            var apiResult = await metodos.GetListadoProductos();
+            lsv_productos.ItemsSource = apiResult;
 
         }
     }

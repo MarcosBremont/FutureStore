@@ -36,9 +36,9 @@ namespace FutureStore.Models
             return listado_de_productos;
         } // Fin del método ObtenerMenu
 
-        public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad, int CantidadProductosEnLaCompra, int PrecioDelEnvioEnLaCompra)
+        public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad, int CantidadProductosEnLaCompra, int PrecioDelEnvioEnLaCompra, int PrecioSinGanancias)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}/{CantidadProductosEnLaCompra}/{PrecioDelEnvioEnLaCompra}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}/{CantidadProductosEnLaCompra}/{PrecioDelEnvioEnLaCompra}/{PrecioSinGanancias}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }
@@ -49,6 +49,15 @@ namespace FutureStore.Models
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }
+
+
+        public async Task<Result> UProductoVender(int cantidad, int Cod)
+        {
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/UProductoVender/{cantidad}/{Cod}");
+            var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
+            return response;
+        }
+
 
 
         public async Task<Result> DProducto(int Cod)
