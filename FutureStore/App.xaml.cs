@@ -8,6 +8,8 @@ namespace FutureStore
     {
         public static int Codigo { get; set; }
         public static int CantidadParaVender { get; set; }
+        public static int CantidadProductosEnLaCompra { get; set; }
+        public static int PrecioDelEnvioEnLaCompra { get; set; }
         public static Double GananciaParaVender { get; set; }
         public static String NombreParaVender { get; set; }
         public static String PrecioParaVender { get; set; }

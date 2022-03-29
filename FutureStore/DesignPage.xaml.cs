@@ -19,16 +19,6 @@ namespace FutureStore
             InitializeComponent();
         }
 
-        private async void btnAgregarProducto_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                var response = await metodos.SentenciaProductos(TxtNombre.Text, Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+       
     }
 }

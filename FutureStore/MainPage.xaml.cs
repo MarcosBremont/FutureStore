@@ -110,7 +110,9 @@ namespace FutureStore
                 App.Codigo = element.Cod;
                 App.NombreParaVender = element.Nombre;
                 App.PrecioParaVender = element.Precio.ToString(); ;
-                App.GananciaParaVender =  element.Precio * 0.30;
+                App.GananciaParaVender =  element.Precio;
+                App.CantidadProductosEnLaCompra =  element.CantidadProductosEnLaCompra;
+                App.PrecioDelEnvioEnLaCompra =  element.PrecioDelEnvioEnLaCompra;
                 Acr.UserDialogs.UserDialogs.Instance.Toast("");
                 toastConfig.MostrarNotificacion($"¡Seleccione que desea hacer, eliminar o modificar!", ToastPosition.Top, 3, "#51C560");
                 TxtCantidadProductos.IsVisible = true;
@@ -192,10 +194,18 @@ namespace FutureStore
                 {
                     toastConfig.MostrarNotificacion($"¡Por favor llenar el campo de cantidad!", ToastPosition.Top, 3, "#B02828");
                 }
+                else if (string.IsNullOrEmpty(TxtCantidadProductosEnLaCompra.Text))
+                {
+                    toastConfig.MostrarNotificacion($"¡Por favor llenar el campo de los productos!", ToastPosition.Top, 3, "#B02828");
+                }
+                else if (string.IsNullOrEmpty(TxtPrecioDelEnvioEnLaCompra.Text))
+                {
+                    toastConfig.MostrarNotificacion($"¡Por favor llenar el campo del precio en la compra!", ToastPosition.Top, 3, "#B02828");
+                }
                 else
                 {
                     Acr.UserDialogs.UserDialogs.Instance.ShowLoading();
-                    var response = await metodos.SentenciaProductos(TxtNombre.Text.ToUpper(), Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text));
+                    var response = await metodos.SentenciaProductos(TxtNombre.Text.ToUpper(), Convert.ToInt32(TxtPrecio.Text), Convert.ToInt32(TxtCantidad.Text), Convert.ToInt32(TxtCantidadProductosEnLaCompra.Text), Convert.ToInt32(TxtPrecioDelEnvioEnLaCompra.Text));
                     var apiResult = await metodos.GetListadoProductos();
                     lsv_productos.ItemsSource = apiResult;
                     TxtNombre.Text = "";
@@ -299,15 +309,9 @@ namespace FutureStore
 
         private async void BtnVender_Clicked(object sender, EventArgs e)
         {
-            int CantidadProductosQueLlegaronCalcular = Convert.ToInt32(TxtCantidadPaquetes.Text);
-            int CuantoSeLeCobraranDeLaLibra = Convert.ToInt32(TxtPrecioParaCalcular.Text) / CantidadProductosQueLlegaronCalcular;
-            App.CantidadParaVender = Convert.ToInt32(TxtCantidadProductos.Text);
-            double Precioparacalcular = Convert.ToDouble(TxtPrecioParaCalcular.Text);
-            Double PrecioDelPaqueteYLibra = Precioparacalcular + CuantoSeLeCobraranDeLaLibra;
-            Double PrecioTotalMasLasGanancias = PrecioDelPaqueteYLibra * 0.30;
-
+            double PrecioTotalMasLasGanancias = App.GananciaParaVender / App.CantidadProductosEnLaCompra * 0.30;
             var result = await new Metodos().UProducto(Convert.ToInt32(TxtCantidadProductos.Text), App.Codigo);
-            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias));
+            var result2 = await new Metodos().IProductoVendido(App.NombreParaVender, Convert.ToInt32(App.PrecioParaVender), Convert.ToInt32(TxtCantidadProductos.Text), Convert.ToInt32(PrecioTotalMasLasGanancias), Convert.ToInt32(App.CantidadProductosEnLaCompra), Convert.ToInt32(FrPrecioDelEnvioEnLaCompra));
             toastConfig.MostrarNotificacion($"¡Producto Vendido con Exito!", ToastPosition.Top, 3, "#51C560");
 
         }

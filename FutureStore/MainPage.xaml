@@ -267,6 +267,27 @@
                                 </StackLayout>
                             </Frame>
 
+                            <Frame x:Name="FrPrecioSinGanancias" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="Checkbox.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333" Keyboard="Numeric" Placeholder="Precio del paquete sin ganancias" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecioSinGanancias"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame x:Name="FrCantidadProductosEnLaCompra" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="dollar.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333"  Keyboard="Numeric"  Placeholder="Productos que llegaron" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtCantidadProductosEnLaCompra"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame x:Name="FrPrecioDelEnvioEnLaCompra" Padding="0" HasShadow="False" BorderColor="#254D8D" CornerRadius="2">
+                                <StackLayout Orientation="Horizontal"  Margin="4" >
+                                    <Image Source="Checkbox.png" Margin="5"></Image>
+                                    <customcontrol:CustomEntry  PlaceholderColor="#333" TextColor="#333" Keyboard="Numeric" Placeholder="Precio que costaba el envio" HorizontalOptions="FillAndExpand" TextTransform="Uppercase"  x:Name="TxtPrecioDelEnvioEnLaCompra"  Margin="0,0,0,0" />
+                                </StackLayout>
+                            </Frame>
+
                             <Button CornerRadius="2" x:Name="btnAgregarProducto" Clicked="btnAgregarProducto_Clicked" BackgroundColor="#254D8D" TextColor="White" Margin="0,20,0,0" Text="Agregar Producto"></Button>
 
 

@@ -36,9 +36,9 @@ namespace FutureStore.Models
             return listado_de_productos;
         } // Fin del método ObtenerMenu
 
-        public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad)
+        public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad, int CantidadProductosEnLaCompra, int PrecioDelEnvioEnLaCompra)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}/{CantidadProductosEnLaCompra}/{PrecioDelEnvioEnLaCompra}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }
@@ -58,9 +58,9 @@ namespace FutureStore.Models
             return response;
         }
 
-        public async Task<Result> IProductoVendido(string Nombre, int Precio, int Cantidad, int Ganancia)
+        public async Task<Result> IProductoVendido(string Nombre, int Precio, int Cantidad, int Ganancia, int CantidadProductosEnLaCompra, int PrecioDelEnvioEnLaCompra)
         {
-            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/IProductoVendido/{Nombre}/{Precio}/{Cantidad}/{Ganancia}");
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/IProductoVendido/{Nombre}/{Precio}/{Cantidad}/{Ganancia}/{CantidadProductosEnLaCompra}/{PrecioDelEnvioEnLaCompra}");
             var response = Newtonsoft.Json.JsonConvert.DeserializeObject<Result>(result);
             return response;
         }
