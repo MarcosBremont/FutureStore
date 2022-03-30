@@ -11,6 +11,7 @@ namespace FutureStore.Entidad
         public int Precio { get; set; }
         public int Cantidad { get; set; }
         public int PrecioSinGanancias { get; set; }
+        public int Ganancia { get; set; }
         public int CantidadProductosEnLaCompra { get; set; }
         public int PrecioDelEnvioEnLaCompra { get; set; }
         public string Foto { get; set; } = "";

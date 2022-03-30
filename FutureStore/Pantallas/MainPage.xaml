@@ -220,7 +220,85 @@
 
                 </StackLayout>
             </StackLayout>
-            
+
+
+            <!--Layout Ganancias-->
+            <StackLayout VerticalOptions="FillAndExpand" IsVisible="false" Margin="0,0,0,0"  x:Name="StackLayoutGanancias">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" ></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                </Grid>
+
+                <StackLayout Margin="10,0,10,40" x:Name="LayoutGanancias">
+
+                    <Grid Grid.Row="1" Margin="0" HeightRequest="40" BackgroundColor="#254D8D" Padding="6">
+
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition  Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label FontAttributes="Bold" FontSize="12"  TextColor="White" Text="Nombre." Grid.Column="0"></Label>
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Precio" Grid.Column="1"></Label>
+                        <Label FontAttributes="Bold" FontSize="12" TextColor="White" Text="Ganancia" Grid.Column="2"></Label>
+                        <!--<ImageButton Source="calculator.png"></ImageButton>-->
+
+                    </Grid>
+
+                    <ScrollView>
+
+                        <Grid>
+                            <ListView  x:Name="lsv_ganancias"  SeparatorVisibility="Default" SeparatorColor="#3E5569" HasUnevenRows="True" >
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate >
+
+                                        <ViewCell Height="20">
+
+
+                                            <Grid  BackgroundColor="White">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+
+    
+
+
+
+                                                <Label TextColor="#333" Margin="10,0,0,0"  Grid.Column="0" FontSize="12" HorizontalOptions="Start" Text="{Binding Nombre}"/>
+                                                <Label TextColor="#333" Grid.Column="1" FontSize="12" HorizontalOptions="Start" Text="{Binding Precio}"/>
+                                                <Label TextColor="#333" Grid.Column="2" FontSize="12" HorizontalOptions="Start" Text="{Binding Ganancia}"/>
+                                            </Grid>
+
+
+                                            <!--ITEM-->
+                                        </ViewCell>
+                                    </DataTemplate>
+
+
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </Grid>
+                    </ScrollView>
+
+                   
+
+                </StackLayout>
+            </StackLayout>
+
 
             <!--Layout Agregar Productos-->
             <StackLayout  x:Name="StackLayoutAddProducts">
@@ -311,15 +389,17 @@
                     </StackLayout>-->
                         <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
 
+
                             <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridHome">
                                 <Image Source="home.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHome"/>
                             </StackLayout>
-
+                            
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridHome">
-                                <Image Source="home.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHome"/>
+                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridGanancias">
+                                <Image Source="dollarAzul.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnGanancias"/>
                             </StackLayout>
+
 
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 

@@ -36,8 +36,10 @@ namespace FutureStore
                     StackLayoutAddProducts.IsVisible = false;
                     StackLayoutDashboard.IsVisible = false;
                     btnImgHome.Source = "home.png";
+                    btnGanancias.Source = "dollarAzul.png";
                     btnImgCalculator.Source = "calculatorAmarillo.png";
                     StackLayourCalculator.IsVisible = true;
+                    StackLayoutGanancias.IsVisible = false;
                     StackLayoutProducts.IsVisible = false;
                     btnProducts.Source = "products.png";
                     btnAddProduct.Source = "add.png";
@@ -57,6 +59,8 @@ namespace FutureStore
                     btnProducts.Source = "productsAmarillo.png";
                     StackLayoutDashboard.IsVisible = false;
                     btnImgHome.Source = "home.png";
+                    btnGanancias.Source = "dollarAzul.png";
+                    StackLayoutGanancias.IsVisible = false;
                     StackLayourCalculator.IsVisible = false;
                     StackLayoutProducts.IsVisible = true;
                     btnImgCalculator.Source = "calculator.png";
@@ -73,8 +77,10 @@ namespace FutureStore
                     StackLayoutProducts.IsVisible = false;
                     StackLayoutDashboard.IsVisible = false;
                     btnImgHome.Source = "home.png";
+                    btnGanancias.Source = "dollarAzul.png";
                     StackLayoutAddProducts.IsVisible = true;
                     LayoutProductos.IsVisible = true;
+                    StackLayoutGanancias.IsVisible = false;
                     btnAddProduct.Source = "addAmarillo.png";
                     StackLayourCalculator.IsVisible = false;
                     btnImgCalculator.Source = "calculator.png";
@@ -92,10 +98,33 @@ namespace FutureStore
                     StackLayoutAddProducts.IsVisible = false;
                     btnImgHome.Source = "homeAmarillo.png";
                     StackLayoutDashboard.IsVisible = true;
+                    btnGanancias.Source = "dollarAzul.png";
+
+                    StackLayoutGanancias.IsVisible = false;
                     LayoutProductos.IsVisible = false;
                     btnAddProduct.Source = "add.png";
                     StackLayourCalculator.IsVisible = false;
                     btnImgCalculator.Source = "calculator.png";
+                    btnProducts.Source = "products.png";
+                }),
+                NumberOfTapsRequired = 1
+            });
+
+            gridGanancias.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(async () =>
+                {
+                    StackLayoutProducts.IsVisible = false;
+                    StackLayoutDashboard.IsVisible = false;
+                    StackLayoutAddProducts.IsVisible = false;
+                    btnGanancias.Source = "dollarAmarillo.png";
+                    StackLayoutDashboard.IsVisible = false;
+                    StackLayoutGanancias.IsVisible = true;
+                    LayoutProductos.IsVisible = false;
+                    btnAddProduct.Source = "add.png";
+                    StackLayourCalculator.IsVisible = false;
+                    btnImgCalculator.Source = "calculator.png";
+                    btnImgHome.Source = "home.png";
                     btnProducts.Source = "products.png";
                 }),
                 NumberOfTapsRequired = 1
@@ -150,6 +179,10 @@ namespace FutureStore
                 this.IsBusy = false;
                 var apiResult = await metodos.GetListadoProductos();
                 lsv_productos.ItemsSource = apiResult;
+
+
+                var apiResult2 = await metodos.GetListadoGanancias();
+                lsv_ganancias.ItemsSource = apiResult2;
             }
             catch (Exception ex)
             {

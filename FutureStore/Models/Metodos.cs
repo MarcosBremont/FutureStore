@@ -36,6 +36,18 @@ namespace FutureStore.Models
             return listado_de_productos;
         } // Fin del método ObtenerMenu
 
+
+        public async Task<List<EProductos>> GetListadoGanancias()
+        {
+
+            var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/ConsultarListaDeGanancias/");
+            var listado_de_ganancias = Newtonsoft.Json.JsonConvert.DeserializeObject<List<EProductos>>(result);
+
+            return listado_de_ganancias;
+        } // Fin del método ObtenerMenu
+
+
+
         public async Task<Result> SentenciaProductos(string Nombre, int Precio, int Cantidad, int CantidadProductosEnLaCompra, int PrecioDelEnvioEnLaCompra, int PrecioSinGanancias)
         {
             var result = await herramientas.EjecutarSentenciaEnApiLibre($"Productos/SentenciaProductos/{Nombre}/{Precio}/{Cantidad}/{CantidadProductosEnLaCompra}/{PrecioDelEnvioEnLaCompra}/{PrecioSinGanancias}");
