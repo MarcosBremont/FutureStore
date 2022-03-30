@@ -173,4 +173,25 @@
   <ItemGroup>
     <BundleResource Include="Resources\home.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\addAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\calculatorAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dollarAmarillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dollarAzul.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\paint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\playstore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\productsAmarillo.png" />
+  </ItemGroup>
 </Project>
