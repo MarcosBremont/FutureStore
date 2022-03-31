@@ -181,14 +181,20 @@ namespace FutureStore
                 lsv_productos.ItemsSource = apiResult;
 
 
-                var apiResult2 = await metodos.GetListadoGanancias();
-                lsv_ganancias.ItemsSource = apiResult2;
+                llenarGanancias();
             }
             catch (Exception ex)
             {
                 toastConfig.MostrarNotificacion($"¡No se pudo conectar, intente mas tarde!", ToastPosition.Top, 3, "#B02828");
             }
 
+        }
+
+        public async void llenarGanancias() {
+
+            var apiResult2 = await metodos.GetListadoGanancias();
+            lsv_ganancias.ItemsSource = apiResult2;
+            LblTotalGanancias.Text = string.Format("{0:N2}", "Tus ganancias son: " + apiResult2.Sum(n => n.Ganancia));
         }
 
         private async void BtnCalcular_Clicked(object sender, EventArgs e)
@@ -392,6 +398,21 @@ namespace FutureStore
             var apiResult = await metodos.GetListadoProductos();
             lsv_productos.ItemsSource = apiResult;
 
+            llenarGanancias();
+        }
+        private void btnGananciasDashBoard_Clicked(object sender, EventArgs e)
+        {
+            StackLayoutProducts.IsVisible = false;
+            StackLayoutDashboard.IsVisible = false;
+            btnImgHome.Source = "home.png";
+            StackLayoutAddProducts.IsVisible = false;
+            StackLayoutGanancias.IsVisible = true;
+            LayoutProductos.IsVisible = false;
+            btnAddProduct.Source = "add.png";
+            btnGanancias.Source = "dollarAmarillo.png";
+            StackLayourCalculator.IsVisible = false;
+            btnImgCalculator.Source = "calculator.png";
+            btnProducts.Source = "products.png";
         }
     }
 }

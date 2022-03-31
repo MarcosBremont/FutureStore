@@ -56,10 +56,23 @@
                                 HeightRequest="80"
                                 BackgroundColor="#35606B"
                                 CornerRadius="2"
-                                Clicked="btnAgregarProductos_Clicked"
-                                
-                                >
+                                Clicked="btnAgregarProductos_Clicked">
                         </Button>
+
+
+                        <Button 
+                                Margin="20,5,20,5"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                x:Name="btnGananciasDashBoard"
+                                Text="VER GANANCIAS"
+                                TextColor="White"
+                                HeightRequest="80"
+                                BackgroundColor="#1A4A57"
+                                CornerRadius="2"
+                                Clicked="btnGananciasDashBoard_Clicked">
+                        </Button>
+
 
 
 
@@ -235,6 +248,7 @@
                 </Grid>
 
                 <StackLayout Margin="10,0,10,40" x:Name="LayoutGanancias">
+                    <Label HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,0,0" x:Name="LblTotalGanancias" TextColor="DarkRed"></Label>
 
                     <Grid Grid.Row="1" Margin="0" HeightRequest="40" BackgroundColor="#254D8D" Padding="6">
 
@@ -290,10 +304,9 @@
 
                                 </ListView.ItemTemplate>
                             </ListView>
-
                         </Grid>
                     </ScrollView>
-
+                    
                    
 
                 </StackLayout>
@@ -390,33 +403,33 @@
                         <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
 
 
-                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridHome">
-                                <Image Source="home.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHome"/>
+                            <StackLayout  Margin="8,0,8,0" BackgroundColor="White" x:Name="gridHome">
+                                <Image Source="home.png" Margin="8,0,8,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgHome"/>
                             </StackLayout>
                             
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridGanancias">
-                                <Image Source="dollarAzul.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnGanancias"/>
+                            <StackLayout  Margin="8,0,8,0" BackgroundColor="White" x:Name="gridGanancias">
+                                <Image Source="dollarAzul.png" Margin="8,0,8,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnGanancias"/>
                             </StackLayout>
 
 
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                            <StackLayout  Margin="10,0,10,0" BackgroundColor="White" x:Name="gridCalculator">
-                                <Image Source="calculator.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgCalculator"/>
+                            <StackLayout  Margin="8,0,8,0" BackgroundColor="White" x:Name="gridCalculator">
+                                <Image Source="calculator.png" Margin="8,0,8,0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnImgCalculator"/>
                             </StackLayout>
 
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                            <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridProducts">
-                                <Image Source="products.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnProducts"/>
+                            <StackLayout Margin="8,0,8,0" BackgroundColor="White" x:Name="gridProducts">
+                                <Image Source="products.png" Margin="8,0,8,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnProducts"/>
                             </StackLayout>
 
                             <BoxView HeightRequest="40" WidthRequest="1" BackgroundColor="#818285" VerticalOptions="Center" Opacity="0.7"/>
 
-                            <StackLayout Margin="10,0,10,0" BackgroundColor="White" x:Name="gridaddproduct">
-                                <Image Source="add.png" Margin="12,0,12,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnAddProduct"/>
+                            <StackLayout Margin="8,0,8,0" BackgroundColor="White" x:Name="gridaddproduct">
+                                <Image Source="add.png" Margin="8,0,8,0" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" HeightRequest="30" x:Name="btnAddProduct"/>
                             </StackLayout>
 
                         </StackLayout>
